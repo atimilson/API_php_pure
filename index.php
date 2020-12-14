@@ -36,8 +36,7 @@ class Rest{
                             header("HTTP/1.0 405 Method Not Allowed");
                             echo json_encode(array('status' => 'erro', 'dados' => 'Classe inexistente!'));
                             die();
-                        break;                               
-                        
+                        break;  
                     }                   
                 } else {
                     return json_encode(array('status' => 'erro', 'dados' => 'Método inexistente!'));
