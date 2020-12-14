@@ -3,14 +3,33 @@
 require_once('./model/modelProdutos.php');
 
 class PRODUTO{
+    private $model;
 
-    public function mostrar(){
-       $dados =  produtos_get();        
-        header('Content-Type: application/json; charset=utf-8');      
-        echo json_encode(array('status' => 'sucesso', 'dados' => $dados));        
+    function __construct() {
+        $this->model = new Model_produtos();
     }
 
-    public function inserir($parametros){
-        
+    public function mostrar($parametros){
+        $dados =  $this->model->produtos_get($parametros); 
+        header('Content-Type: application/json; charset=utf-8');      
+        echo json_encode(array('status' => 'sucesso', 'dados' => $dados));          
+    }
+
+    public function inserir($parametros){              
+        $dados = $this->model->produto_insert($parametros);     
+        header('Content-Type: application/json; charset=utf-8');      
+        echo json_encode(array('status' => 'sucesso', 'dados' => $dados));          
+    }
+
+    public function alterar($parametros){
+        $dados = $this->model->produto_update($parametros);     
+        header('Content-Type: application/json; charset=utf-8');      
+        echo json_encode(array('status' => 'sucesso', 'dados' => $dados));
+    }
+
+    public function deletar($parametros){
+        $dados = $this->model->produto_delete($parametros);     
+        header('Content-Type: application/json; charset=utf-8');      
+        echo json_encode(array('status' => 'sucesso', 'dados' => $dados));
     }
 }
