@@ -30,7 +30,7 @@ class Rest{
                             call_user_func_array(array(new $classe, $metodo), array($post_vars));
                         break;
                         case 'DELETE':
-                            call_user_func_array(array(new $classe, $metodo), $parametros);
+                            call_user_func_array(array(new $classe, $metodo), array($parametros));
                         break;
                         default:       
                             header("HTTP/1.0 405 Method Not Allowed");
