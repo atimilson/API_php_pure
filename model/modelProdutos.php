@@ -7,8 +7,7 @@ class Model_produtos{
             $opcao = '';   
             if(isset($parametro[0])){
                 $opcao = 'Where id = :id';
-            }   
-            
+            }               
             $stmp = CON::getInstance()->prepare('select * from produto '.$opcao);
             $stmp->bindParam( ':id', $parametro[0],PDO::PARAM_INT );            
             $stmp->execute();
@@ -33,11 +32,12 @@ class Model_produtos{
 
     function produto_update($parametro){
         try{    
-            $stmp = CON::getInstance()->prepare('update produto  set produto=:produto, preco=:preco where id=:id');
+            $stmp = CON::getInstance()->prepare('update produto  set descricao=:descricao, cor=:cor where id=:id');
             $stmp->bindParam(":id",$parametro['id']);
-            $stmp->bindParam(":produto",$parametro['produto']);
-            $stmp->bindParam(":preco",$parametro['preco']);
-            $stmp->execute();        
+            $stmp->bindParam(":descricao",$parametro['descricao']);
+            $stmp->bindParam(":cor",$parametro['cor']);
+            $stmp->execute();    
+            return 'cadastrado com sucesso';    
         } catch (PDOException $e){
             return 'erro ao cadastrar '.$e.' --- parametros ---'.var_dump($parametro);
         }
@@ -47,7 +47,8 @@ class Model_produtos{
         try{    
             $stmp = CON::getInstance()->prepare('delete from produto where id = :id');
             $stmp->bindParam(":id",$parametro['id']);
-            $stmp->execute();        
+            $stmp->execute();    
+            return 'cadastrado com sucesso';    
         } catch (PDOException $e){
             return 'erro ao cadastrar '.$e.' --- parametros ---'.var_dump($parametro);
         }
