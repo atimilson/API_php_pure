@@ -19,14 +19,19 @@ class Rest{
                     switch ($request_method)
                     {                       
                         case 'GET': 
-                            $retorno = call_user_func_array(array(new $classe, $metodo), array($parametros));
+                            call_user_func_array(array(new $classe, $metodo), array($parametros));
                         break;
                         case 'POST':
                             parse_str(file_get_contents("php://input"),$post_vars);
                             call_user_func_array(array(new $classe, $metodo), array($post_vars));
                         break;
+                        case 'PUT':
+                            parse_str(file_get_contents("php://input"),$post_vars);
+                            call_user_func_array(array(new $classe, $metodo), array($post_vars));
+                        break;
                         case 'DELETE':
-                            call_user_func_array(array(new $classe, $metodo), array($parametros));
+                            parse_str(file_get_contents("php://input"),$post_vars);
+                            call_user_func_array(array(new $classe, $metodo), array($post_vars));
                         break;
                         default:       
                             header("HTTP/1.0 405 Method Not Allowed");

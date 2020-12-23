@@ -31,7 +31,7 @@ class PRODUTO{
     }
 
     public function deletar($parametros){
-      //  $dados = $this->model->produto_delete($parametros);     
+        $dados = $this->model->produto_delete($parametros);     
         header('Content-Type: application/json; charset=utf-8');      
         echo json_encode(array('status' => 'sucesso', 'dados' => $dados));
     }

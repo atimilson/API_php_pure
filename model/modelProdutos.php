@@ -48,10 +48,10 @@ class Model_produtos{
         }
     }
 
-    function produto_delete($parametro){
+    function produto_delete($parametro){  
         try{    
             $stmp = CON::getInstance()->prepare('delete from produto where id = :id');
-            $stmp->bindParam(":id",$parametro[0]); 
+            $stmp->bindParam(":id",$parametro['id']); 
             $stmp->execute();    
             return 'cadastrado com sucesso';    
         } catch (PDOException $e){
