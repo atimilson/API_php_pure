@@ -25,10 +25,6 @@ class Rest{
                             parse_str(file_get_contents("php://input"),$post_vars);
                             call_user_func_array(array(new $classe, $metodo), array($post_vars));
                         break;
-                        case 'PUT':
-                            parse_str(file_get_contents("php://input"),$post_vars);                            
-                            call_user_func_array(array(new $classe, $metodo), array($post_vars));
-                        break;
                         case 'DELETE':
                             call_user_func_array(array(new $classe, $metodo), array($parametros));
                         break;

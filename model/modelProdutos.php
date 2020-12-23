@@ -19,7 +19,12 @@ class Model_produtos{
 
     function produto_insert($parametro){
         try{
-            $stmp = CON::getInstance()->prepare('insert into produto(descricao,cor) values (:descricao,:cor)');
+            if (!isset($parametro['id'])){
+                $stmp = CON::getInstance()->prepare('insert into produto(descricao,cor) values (:descricao,:cor) ');
+            }else{
+                $stmp = CON::getInstance()->prepare('insert into produto(id,descricao,cor) values (:id,:descricao,:cor) ON DUPLICATE KEY UPDATE descricao = :descricao, cor = :cor');
+                $stmp->bindParam( ':id', $parametro['id'] );  
+            }
             $stmp->bindParam( ':descricao', $parametro['descricao'] );
             $stmp->bindParam( ':cor', $parametro['cor'] );
             $stmp->execute();
