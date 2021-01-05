@@ -1,7 +1,6 @@
 <?php 
-require_once('./conexao/conecta.class.php');
 
-class Model_produtos{
+class ModelProdutos{
     function produtos_get($parametro){
         try{
             $opcao = '';   
@@ -59,13 +58,3 @@ class Model_produtos{
         }
     }
 }
-
-/*$stmp = CON::getInstance()->prepare('select now()');
-
-$stmp->execute();
-
-while ($a = $stmp->fetch()) {
-    # code...
-    print_r($a);
-}
-*/
