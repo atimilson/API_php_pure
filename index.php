@@ -1,7 +1,17 @@
 <?php 
 require_once('./controller/produto.php');
 
-class Rest{
+function __construct() {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Credentials: true");
+        header("Access-Control-Max-Age: 1000");
+        header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
+        header("Access-Control-Allow-Methods: PUT, POST, GET, OPTIONS, DELETE");
+    }
+
+class Rest{  
+   
+
     public static function open($req){
         $url = explode('/',$req['url']);
         $classe = ucfirst($url[0]);       
@@ -29,7 +39,7 @@ class Rest{
                             parse_str(file_get_contents("php://input"),$post_vars);
                             call_user_func_array(array(new $classe, $metodo), array($post_vars));
                         break;
-                        case 'DELETE':
+                        case 'OPTIONS':
                             parse_str(file_get_contents("php://input"),$post_vars);
                             call_user_func_array(array(new $classe, $metodo), array($post_vars));
                         break;
